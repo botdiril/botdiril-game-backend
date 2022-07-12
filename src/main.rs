@@ -28,9 +28,11 @@ async fn main() -> std::io::Result<()> {
     let redis_client = Client::open(format!("redis://{}", redis_uri)).unwrap();
 
     let mongodb_uri = std::env::var("BARYON_MONGODB_HOST").expect("MongoDB host URI");
+    let mongodb_user = std::env::var("BARYON_MONGODB_USER").expect("MongoDB username");
+    let mongodb_pass = std::env::var("BARYON_MONGODB_PASSWORD").expect("MongoDB password");
     let uri = format!(
-        "mongodb://root:changeit@{}/?replicaSet=rs0&appName=baryonic",
-        mongodb_uri
+        "mongodb://{}:{}@{}/?replicaSet=rs0&appName=baryonic",
+        mongodb_user, mongodb_pass, mongodb_uri
     );
     let options = ClientOptions::parse(&uri).await.unwrap();
 
