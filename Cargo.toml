@@ -21,3 +21,4 @@ log = "0.4"
 mongodb = "2.2"
 derive_more = "0.99"
 enum-map = {version = "2.4", features = ["serde"]}
+urlencoding = "2.1"
